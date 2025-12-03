@@ -104,7 +104,7 @@ JuceAudioProcessor::JuceAudioProcessor(
 		JuceAudioParameterFactory* paramFactory
 		)
 	: CoreObjectHolder(this)
-	, AudioProcessor(
+	, MagicProcessor(
 #ifdef PLUGIN_BUSES_PROPERTIES
 		PLUGIN_BUSES_PROPERTIES
 #else
@@ -564,33 +564,33 @@ void JuceAudioProcessor::postProcess(TimeConverter& timeConverter, juce::MidiBuf
 }
 
 //==============================================================================
-bool JuceAudioProcessor::hasEditor() const
-{
-	return true;
-}
+//bool JuceAudioProcessor::hasEditor() const
+//{
+//	return true;
+//}
 
-AudioProcessorEditor* JuceAudioProcessor::createEditor()
-{
-	return new RNBOAudioProcessorEditor(this, _rnboObject);
-}
+//AudioProcessorEditor* JuceAudioProcessor::createEditor()
+//{
+//	return new RNBOAudioProcessorEditor(this, _rnboObject);
+//}
 
 //==============================================================================
-void JuceAudioProcessor::getStateInformation (MemoryBlock& destData)
-{
-	auto rnboPreset = _rnboObject.getPresetSync();
-	auto rnboPresetStr = RNBO::convertPresetToJSON(*rnboPreset);
-	MemoryOutputStream stream(destData, false);
-	stream.writeString(rnboPresetStr);
-}
-
-void JuceAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
-{
-	String rnboPresetStr = String::createStringFromData (data, sizeInBytes);
-	auto rnboPreset = RNBO::convertJSONToPreset(rnboPresetStr.toStdString());
-	_rnboObject.setPresetSync(std::move(rnboPreset));
-	// now let us get all parameter updates that were triggered by the preset update immediately
-	drainEvents();
-}
+//void JuceAudioProcessor::getStateInformation (MemoryBlock& destData)
+//{
+//	auto rnboPreset = _rnboObject.getPresetSync();
+//	auto rnboPresetStr = RNBO::convertPresetToJSON(*rnboPreset);
+//	MemoryOutputStream stream(destData, false);
+//	stream.writeString(rnboPresetStr);
+//}
+//
+//void JuceAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
+//{
+//	String rnboPresetStr = String::createStringFromData (data, sizeInBytes);
+//	auto rnboPreset = RNBO::convertJSONToPreset(rnboPresetStr.toStdString());
+//	_rnboObject.setPresetSync(std::move(rnboPreset));
+//	// now let us get all parameter updates that were triggered by the preset update immediately
+//	drainEvents();
+//}
 
 void JuceAudioProcessor::eventsAvailable()
 {

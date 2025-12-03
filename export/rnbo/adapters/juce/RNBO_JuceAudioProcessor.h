@@ -14,6 +14,7 @@
 #include "RNBO.h"
 #include "RNBO_BinaryData.h"
 #include "RNBO_TimeConverter.h"
+
 #include <unordered_map>
 #include <vector>
 #include <mutex>
@@ -21,6 +22,7 @@
 #include <json/json.hpp>
 #include <juce_audio_processors/juce_audio_processors.h>
 #include <juce_audio_formats/juce_audio_formats.h>
+#include "../../../../thirdparty/foleys_gui_magic/modules/foleys_gui_magic/foleys_gui_magic.h"
 
 namespace moodycamel {
 template<typename T, size_t MAX_BLOCK_SIZE>
@@ -72,7 +74,7 @@ namespace RNBO {
 	class JuceAudioProcessor :
 		public RNBO::EventHandler,
 		public CoreObjectHolder,
-		public juce::AudioProcessor,
+        public foleys::MagicProcessor,
 		public juce::AsyncUpdater,
 		private juce::Thread
 	{
@@ -99,8 +101,8 @@ namespace RNBO {
 		void processBlock (juce::AudioBuffer<double>&, juce::MidiBuffer&) override;
 
 		//==============================================================================
-		juce::AudioProcessorEditor* createEditor() override;
-		bool hasEditor() const override;
+		// juce::AudioProcessorEditor* createEditor() override;
+		// bool hasEditor() const override;
 
 		//==============================================================================
 		const String getName() const override;
@@ -119,8 +121,8 @@ namespace RNBO {
 		void changeProgramName (int index, const String& newName) override;
 
 		//==============================================================================
-		void getStateInformation (juce::MemoryBlock& destData) override;
-		void setStateInformation (const void* data, int sizeInBytes) override;
+		// void getStateInformation (juce::MemoryBlock& destData) override;
+		// void setStateInformation (const void* data, int sizeInBytes) override;
 
 		//==============================================================================
 

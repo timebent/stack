@@ -8,7 +8,7 @@ class CustomAudioProcessor : public RNBO::JuceAudioProcessor {
 public:
     static CustomAudioProcessor* CreateDefault();
     CustomAudioProcessor(const nlohmann::json& patcher_desc, const nlohmann::json& presets, const RNBO::BinaryData& data);
-    juce::AudioProcessorEditor* createEditor() override;
+    // juce::AudioProcessorEditor* createEditor() override;
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CustomAudioProcessor)
 };

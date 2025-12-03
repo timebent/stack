@@ -21,6 +21,7 @@ juce_add_gui_app(RNBOApp
 # this header will be automatically added to the target. The main function of the JuceHeader is to
 # include all your JUCE module headers; if you're happy to include module headers directly, you
 # probably don't need to call this.
+juce_add_module(thirdparty/foleys_gui_magic/modules/foleys_gui_magic)
 
 # the RNBO adapters currently need this
 juce_generate_juce_header(RNBOApp)
@@ -67,6 +68,8 @@ target_compile_definitions(RNBOApp
   JUCE_APPLICATION_NAME_STRING="$<TARGET_PROPERTY:RNBOApp,JUCE_PRODUCT_NAME>"
   JUCE_APPLICATION_VERSION_STRING="$<TARGET_PROPERTY:RNBOApp,JUCE_VERSION>")
 
+
+
 # `target_link_libraries` links libraries and JUCE modules to other libraries or executables. Here,
 # we're linking our executable target to the `juce::juce_gui_extra` module. Inter-module
 # dependencies are resolved automatically, so `juce_core`, `juce_events` and so on will also be
@@ -81,6 +84,10 @@ target_link_libraries(RNBOApp
   juce::juce_audio_processors
   juce::juce_audio_utils
   juce::juce_data_structures
+   juce::juce_dsp
+  juce::juce_cryptography
+  foleys_gui_magic
+
   PUBLIC
   juce::juce_recommended_config_flags
   juce::juce_recommended_lto_flags
