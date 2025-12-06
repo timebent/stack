@@ -39,6 +39,10 @@ juce_add_plugin(RNBOAudioPlugin
 # probably don't need to call this.
 #juce_add_module(thirdparty/foleys_gui_magic/modules/foleys_gui_magic)
 
+juce_add_binary_data(RNBOAudioPlugin_BinaryData
+    SOURCES
+    resources/magic.xml)
+
 # the RNBO adapters currently need this
 juce_generate_juce_header(RNBOAudioPlugin)
 
@@ -109,6 +113,7 @@ target_link_libraries(RNBOAudioPlugin
   juce::juce_recommended_lto_flags
   juce::juce_recommended_warning_flags
   foleys_gui_magic
+  RNBOAudioPlugin_BinaryData
   )
 
 #TODO windows and linux

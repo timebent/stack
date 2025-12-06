@@ -117,7 +117,7 @@ public:
 
 		_keyboardFocusGrabber = RNBO::make_unique<GrabFocusWhenShownComponentMovementWatcher>(&_midiKeyboardComponent);
 
-		setSize (800, 494);
+		setSize (800, 400);
     }
 
 	void patcherChanged() override
