@@ -1,7 +1,8 @@
 # Alterations:
 
-## You have to do this each time you export your RNBO code to the export folder.
+## The adapters/juce files have been copied to the top level src folder. The Plugin.cmake and the App.cmake both point to there for these files.
 
+## These are the steps that were taken to make this work. These are baked into the template.
 
 ### 0. Find the RNBO_JuceAudioProcessor.h and the RNBO_JuceAudioProcssor.cpp in 
     export->rnbo->adpaters->juce
@@ -47,9 +48,6 @@
             ```
             AudioProcessorEditor* JuceAudioProcessor::createEditor()
             ```
-
-
-## These are the steps that were taken to make this work. These are baked into the template.
 
 ### 1. An updated version (JUCE 8) of juce is retrieved as a submodule. The Foleys Plugin GUI Magic is also retrieved as a submodule. 
 

@@ -2,8 +2,6 @@
 
 This version of the template differs in that it attempts to fold in Foleys Plugin GUI Magic for creating GUIs in combination with what RNBO spits out. You should progress through about 70 lines of this 1st README. 
 
-See README2.md for instructions on what to do BEFORE you start using CMake to build for your build system!!!
-
 ### Original Text of Cycling74s readme.
 
 So you want to build your own DAW or a Plugin? This template should get you started with your own Standalone Desktop application and Audio Plugin, using the source code export feature of RNBO, part of [Max 8](https://cycling74.com/max8/) made by [Cycling '74](https://cycling74.com/). 
@@ -71,8 +69,6 @@ export/
 ```
 
 Whenever you make a change to your RNBO patch, remember to export the source code again to update this file. Now that you've exported your RNBO code, it's time to build. This project uses CMake, which gives us the flexibility of using whatever build system we want. Start by moving to the build directory.
-
-## !!!!!!!!!!! SEE README2.md BEFORE CONTINUING !!!!!!!
 
 ```sh
 cd build
