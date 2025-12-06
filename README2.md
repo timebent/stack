@@ -48,6 +48,7 @@
             ```
             AudioProcessorEditor* JuceAudioProcessor::createEditor()
             ```
+        
 
 ### 1. An updated version (JUCE 8) of juce is retrieved as a submodule. The Foleys Plugin GUI Magic is also retrieved as a submodule. 
 
@@ -90,6 +91,7 @@
             ```
             AudioProcessorEditor* CustomAudioProcessor::createEditor() 
             ```
+
 
 
 

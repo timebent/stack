@@ -1,8 +1,10 @@
+# RNBO-WYSIWYG-GUI
+
+This version of the template differs in that it attempts to fold in Foleys Plugin GUI Magic for creating GUIs in combination with what RNBO exports.  
+
+### Modified Text of Cycling74s original readme.
+
 # RNBO JUCE Examples
-
-This version of the template differs in that it attempts to fold in Foleys Plugin GUI Magic for creating GUIs in combination with what RNBO spits out. You should progress through about 70 lines of this 1st README. 
-
-### Original Text of Cycling74s readme.
 
 So you want to build your own DAW or a Plugin? This template should get you started with your own Standalone Desktop application and Audio Plugin, using the source code export feature of RNBO, part of [Max 8](https://cycling74.com/max8/) made by [Cycling '74](https://cycling74.com/). 
 
@@ -32,19 +34,28 @@ Some notable files/directories:
 | build/RNBOApp_artefacts/          | Your built application will end up here |
 | build/RNBOAudioPlugin_artefacts/  | Your built plugins will end up here |
 
-## Using this Template
+## Clone the repository
 
-This Github repo is a template, which means you can use it to start your own git-based project using this repository as a starting point. The major difference between a template and a fork is that your new project won't include the commit history of this template--it will be an entirely new starting point. For more see [the official description](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
 
 ### Getting Started
 
-To get started, first create a new repository to hold your project using this repository as a template. If you're viewing this repo on Github, you should see a button at the top of the page that says `Use this template`. 
+Create a folder on your local machine. Use the terminal to change directories to that folder
 
-![Use this template button](./img/use-this-template-button.png)
+```
+cd path-to-your-folder-name
+```
 
-You can also follow [the official steps](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) on Github for creating a new repository from a template.
+Clone the repository by running
+```
+git clone https://github.com/timebent/juce-rnbo-template
+```
 
-Now you need to copy this repository locally. Follow [the official steps](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) to clone your repository. Once you've cloned your repository locally, you'll need to initialize the JUCE submodule.
+You can name the repository something specific by using running this instead:
+```
+git clone https://github.com/timebent/juce-rnbo-template name-your-repository
+```
+
+Change directories into the repository you just created. And build the submodules (juce and foleys_gui_magic)
 
 ```
 cd your-project-folder
@@ -70,7 +81,7 @@ export/
 
 Whenever you make a change to your RNBO patch, remember to export the source code again to update this file. Now that you've exported your RNBO code, it's time to build. This project uses CMake, which gives us the flexibility of using whatever build system we want. Start by moving to the build directory.
 
-```sh
+```
 cd build
 ```
 
