@@ -23,6 +23,9 @@ juce_add_gui_app(RNBOApp
 # probably don't need to call this.
 juce_add_module(thirdparty/foleys_gui_magic/modules/foleys_gui_magic)
 
+juce_add_binary_data(RNBOApp_BinaryData
+    SOURCES
+    resources/magic.xml)
 # the RNBO adapters currently need this
 juce_generate_juce_header(RNBOApp)
 
@@ -89,6 +92,8 @@ target_link_libraries(RNBOApp
    juce::juce_dsp
   juce::juce_cryptography
   foleys_gui_magic
+  RNBOApp_BinaryData
+
 
   PUBLIC
   juce::juce_recommended_config_flags

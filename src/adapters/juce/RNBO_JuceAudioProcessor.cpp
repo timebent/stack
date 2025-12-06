@@ -118,7 +118,8 @@ JuceAudioProcessor::JuceAudioProcessor(
 	_dataRefLoadQueue = make_unique<moodycamel::ReaderWriterQueue<std::pair<juce::String, juce::File>, 32>>(static_cast<size_t>(32));
 
 	_formatManager.registerBasicFormats();
-
+    
+    magicState.setGuiValueTree (::BinaryData::magic_xml, ::BinaryData::magic_xmlSize);
 	//create default param factory if one isn't passed in
 	std::unique_ptr<JuceAudioParameterFactory> fact;
 	if (paramFactory == nullptr) {
