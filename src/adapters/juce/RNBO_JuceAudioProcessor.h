@@ -23,7 +23,6 @@
 #include <juce_audio_processors/juce_audio_processors.h>
 #include <JuceHeader.h>
 //#include <juce_audio_formats/juce_audio_formats.h>
-//#include "../../../../thirdparty/foleys_gui_magic/modules/foleys_gui_magic/foleys_gui_magic.h"
 
 namespace moodycamel {
 template<typename T, size_t MAX_BLOCK_SIZE>
@@ -61,6 +60,7 @@ namespace RNBO {
 
 			//called by create if appropriate
 			virtual juce::AudioProcessorParameter* createEnum(RNBO::CoreObject& rnboObject, ParameterIndex index, const ParameterInfo& info, int versionHint, const nlohmann::json& meta);
+        
 			virtual juce::AudioProcessorParameter* createFloat(RNBO::CoreObject& rnboObject, ParameterIndex index, const ParameterInfo& info, int versionHint, const nlohmann::json& meta);
 
 			bool automate(const nlohmann::json& meta);

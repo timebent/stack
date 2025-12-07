@@ -71,7 +71,7 @@
             foleys_gui_magic 
             ```
 
-### 4.  Erased this bit of code in MainComponent.cpp
+### 4.  Erased this bit of code in MainComponent.cpp and replaced with the code below
             ```
             // let's listen to all midi inputs
             // enable all midi inputs
@@ -80,6 +80,15 @@
             _deviceManager.setMidiInputEnabled(input, true);
             }
             _deviceManager.addMidiInputCallback("", &_audioProcessorPlayer);
+            ```
+            ```
+            // let's listen to all midi inputs
+            // enable all midi inputs
+            auto midiInputDevices = MidiInput::getAvailableDevices();
+            for (const auto& deviceInfo : midiInputDevices) {
+                _deviceManager.setMidiInputDeviceEnabled(deviceInfo.identifier, true);
+            }
+            _deviceManager.addMidiInputDeviceCallback("", &_audioProcessorPlayer);
             ```
 
 ### 5. In the src folder, changed the customAudioProcessor.h removing the following function:

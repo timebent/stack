@@ -22,12 +22,11 @@ using namespace juce;
 
 namespace RNBO {
 
-//RNBO parameter ID's can be too long for some hosts, so we hash the ID and render a string from the hash instead
+// Get the parameterID
 juce::ParameterID paramIdForRNBOParam(RNBO::CoreObject& rnboObject, RNBO::ParameterIndex index, int versionHint) {
-	RNBO::MessageTag t = RNBO::TAG(rnboObject.getParameterId(index));
-	std::stringstream s;
-	s << std::string("hashed_0x") << std::hex << std::setfill('0') << std::setw(8) << t;
-	return juce::ParameterID(s.str(), versionHint);
+    // Use the actual parameter name instead of a hash for better readability in GUI editors
+    std::string paramName = rnboObject.getParameterName(index);
+    return juce::ParameterID(paramName, versionHint);
 }
 
 //==============================================================================
