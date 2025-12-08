@@ -45,6 +45,8 @@ target_sources(RNBOApp
   src/CustomAudioEditor.cpp
   src/CustomAudioProcessor.cpp
   src/CustomKnob.cpp
+  src/DebugWindow.cpp
+
   ${RNBO_CLASS_FILE}
   ${RNBO_CPP_DIR}/RNBO.cpp
   ${RNBO_CPP_DIR}/adapters/juce/RNBO_JuceAudioProcessorUtils.cpp

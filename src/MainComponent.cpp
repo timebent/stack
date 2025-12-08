@@ -10,6 +10,8 @@
 
 #include <array>
 
+#include "DebugWindow.h"
+
 //==============================================================================
 /*
     This component lives inside our window, and this is where you should put all
@@ -206,6 +208,19 @@ public:
 		_midiKeyboardComponent.setBounds(usedSelectorWidth, getHeight() - keysHeight, getWidth() - usedSelectorWidth, keysHeight);
     }
 
+	bool keyPressed(const juce::KeyPress& key) override
+	{
+#if JUCE_DEBUG
+		if (key == juce::KeyPress ('d', juce::ModifierKeys::ctrlModifier, 0))
+		{
+			toggleDebugWindow();
+			return true;
+		}
+		return false;
+#endif
+	}
+
+
 private:
     //==============================================================================
 
@@ -224,6 +239,26 @@ private:
 	// Audio device chooser
 	AudioDeviceSelectorComponent _deviceSelectorComponent;
 	bool _includesDeviceSelector = false;
+
+#if JUCE_DEBUG
+	std::unique_ptr<DebugWindow> debugWindow;
+#endif
+
+	void toggleDebugWindow()
+	{
+#if JUCE_DEBUG
+		if (debugWindow == nullptr)
+		{
+			debugWindow = std::make_unique<DebugWindow>();
+		} else {
+			const bool visible = debugWindow->isVisible();
+			debugWindow->setVisible (!visible);
+			if (!visible)
+				debugWindow->toFront (true);
+		}
+#endif
+	}
+
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };
