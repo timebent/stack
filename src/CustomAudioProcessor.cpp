@@ -9,6 +9,7 @@
 #include <rnbo_description.h>
 #endif
 
+#include <rtcheck.h>
 
 //create an instance of our custom plugin, optionally set description, presets and binary data (datarefs)
 CustomAudioProcessor* CustomAudioProcessor::CreateDefault() {
@@ -61,6 +62,8 @@ void CustomAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlockE
 
 void CustomAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
 {
+    rtc::realtime_context rc; // This makes users aware of system calls in the audio thread
+    rtc::set_error_mode(rtc::error_mode::cont);
     // Call parent processBlock
     RNBO::JuceAudioProcessor::processBlock(buffer, midiMessages);
     
@@ -68,12 +71,13 @@ void CustomAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::
     // Push samples to debug window
     if (debugWindow)
     {
-        static int logCount = 0;
-        if (logCount++ == 0)
-            juce::Logger::writeToLog("CustomAudioProcessor: Pushing audio to debug window");
+        // static int logCount = 0;
+        // if (logCount++ == 0)
+        //     juce::Logger::writeToLog("CustomAudioProcessor: Pushing audio to debug window");
         debugWindow->pushAudioSamples(buffer);
     }
 #endif
+
 }
 
 //juce::AudioProcessorEditor* CustomAudioProcessor::createEditor()
