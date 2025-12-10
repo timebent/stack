@@ -5,3 +5,6 @@
 [submodule "thirdparty/foleys_gui_magic"]
 	path = thirdparty/foleys_gui_magic
 	url = https://github.com/ffAudio/foleys_gui_magic.git
+[submodule "thirdparty/rtcheck"]
+	path = thirdparty/rtcheck
+	url = https://github.com/Tracktion/rtcheck.git
