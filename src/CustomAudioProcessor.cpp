@@ -35,6 +35,8 @@ CustomAudioProcessor::CustomAudioProcessor(
     ) 
   : RNBO::JuceAudioProcessor(patcher_desc, presets, data) 
 {
+    // oscilloscope = magicState.createAndAddObject<foleys::MagicOscilloscope>("oscilloscope");
+
 }
 
 void CustomAudioProcessor::initialiseBuilder(foleys::MagicGUIBuilder& builder)
@@ -44,6 +46,12 @@ void CustomAudioProcessor::initialiseBuilder(foleys::MagicGUIBuilder& builder)
     
     // Register our custom component
     builder.registerFactory("CustomKnob", &CustomComponents::CustomKnobItem::factory);
+    
+    oscilloscope = magicState.createAndAddObject<foleys::MagicOscilloscope>("oscilloscope");
+
+    // Create the analyser via the magic state
+    analyser = magicState.createAndAddObject<foleys::MagicAnalyser>("analyser");
+    // oscilloscope = magicState.createAndAddObject<foleys::MagicOscilloscope>("oscilloscope");
 }
 
 void CustomAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlockExpected)
@@ -51,6 +59,11 @@ void CustomAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlockE
     // Call parent prepareToPlay
     RNBO::JuceAudioProcessor::prepareToPlay(sampleRate, samplesPerBlockExpected);
     
+    // Prepare the analyser
+    if (analyser)
+        analyser->prepareToPlay(sampleRate, samplesPerBlockExpected);
+    if (oscilloscope)
+        oscilloscope->prepareToPlay(sampleRate, 0);
 #ifdef JUCE_STANDALONE_APPLICATION
     // Notify debug window
     if (debugWindow)
@@ -62,6 +75,12 @@ void CustomAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::
 {
     // Call parent processBlock
     RNBO::JuceAudioProcessor::processBlock(buffer, midiMessages);
+    
+    // Push samples to the analyser
+    if (analyser)
+        analyser->pushSamples(buffer);
+    if (oscilloscope)
+     oscilloscope->pushSamples(buffer);
     
 #ifdef JUCE_STANDALONE_APPLICATION
     // Push samples to debug window
@@ -80,4 +99,3 @@ void CustomAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::
 //    // Use the default MagicProcessor createEditor
 //    return RNBO::JuceAudioProcessor::createEditor();
 //}
-

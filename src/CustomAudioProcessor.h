@@ -3,6 +3,7 @@
 #include "RNBO_JuceAudioProcessor.h"
 #include "RNBO_BinaryData.h"
 #include "CustomKnobFactory.h"
+#include <foleys_gui_magic/foleys_gui_magic.h>
 #include <json/json.hpp>
 
 #ifdef JUCE_STANDALONE_APPLICATION
@@ -28,6 +29,9 @@ private:
 #ifdef JUCE_STANDALONE_APPLICATION
     DebugWindow* debugWindow = nullptr;
 #endif
+    
+    foleys::MagicAnalyser* analyser = nullptr;
+    foleys::MagicOscilloscope* oscilloscope = nullptr;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CustomAudioProcessor)
 };
