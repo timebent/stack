@@ -5,6 +5,8 @@
 #endif
 #include <json/json.hpp>
 
+#include "CustomSlider.h"
+
 #ifdef RNBO_INCLUDE_DESCRIPTION_FILE
 #include <rnbo_description.h>
 #endif
@@ -45,6 +47,7 @@ void CustomAudioProcessor::initialiseBuilder(foleys::MagicGUIBuilder& builder)
     
     // Register our custom component
     builder.registerFactory("CustomKnob", &CustomComponents::CustomKnobItem::factory);
+    builder.registerFactory("CustomSlider", CustomSliderContainer::factory);
 
     // Create the analyser and oscilloscope via the magic state
     analyser = magicState.createAndAddObject<foleys::MagicAnalyser>("analyser");
