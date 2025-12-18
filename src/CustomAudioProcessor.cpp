@@ -37,7 +37,9 @@ CustomAudioProcessor::CustomAudioProcessor(
     ) 
   : RNBO::JuceAudioProcessor(patcher_desc, presets, data) 
 {
-
+    // Create the analyser and oscilloscope via the magic state
+    analyser = magicState.createAndAddObject<foleys::MagicAnalyser>("analyser");
+    oscilloscope = magicState.createAndAddObject<foleys::MagicOscilloscope>("oscilloscope");
 }
 
 void CustomAudioProcessor::initialiseBuilder(foleys::MagicGUIBuilder& builder)
@@ -48,11 +50,6 @@ void CustomAudioProcessor::initialiseBuilder(foleys::MagicGUIBuilder& builder)
     // Register our custom component
     builder.registerFactory("CustomKnob", &CustomComponents::CustomKnobItem::factory);
     builder.registerFactory("CustomSlider", CustomSliderContainer::factory);
-
-    // Create the analyser and oscilloscope via the magic state
-    analyser = magicState.createAndAddObject<foleys::MagicAnalyser>("analyser");
-    oscilloscope = magicState.createAndAddObject<foleys::MagicOscilloscope>("oscilloscope");
-
 }
 
 void CustomAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlockExpected)
