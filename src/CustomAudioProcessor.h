@@ -24,12 +24,12 @@ public:
 #else
     void setDebugWindow(void* window) {}
 #endif
-    
+
+
 private:
 #ifdef JUCE_STANDALONE_APPLICATION
     DebugWindow* debugWindow = nullptr;
 #endif
-    
     foleys::MagicAnalyser* analyser = nullptr;
     foleys::MagicOscilloscope* oscilloscope = nullptr;
     
