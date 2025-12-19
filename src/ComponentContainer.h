@@ -18,8 +18,6 @@ struct ComponentContainer : public foleys::GuiItem
                        const juce::ValueTree& node)
         : foleys::GuiItem(builder, node)
     {
-        jassert(containedComponent != nullptr);
-
         addAndMakeVisible(containedComponent);
     }
 
