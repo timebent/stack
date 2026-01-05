@@ -2,3 +2,6 @@
 	path = thirdparty/juce
 	url = https://github.com/juce-framework/JUCE.git
 
+[submodule "thirdparty/foleys_gui_magic"]
+	path = thirdparty/foleys_gui_magic
+	url = https://github.com/aaronaanderson/foleys_gui_magic.git
