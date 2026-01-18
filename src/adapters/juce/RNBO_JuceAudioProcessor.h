@@ -21,8 +21,8 @@
 
 #include <json/json.hpp>
 #include <juce_audio_processors/juce_audio_processors.h>
-#include <JuceHeader.h>
-//#include <juce_audio_formats/juce_audio_formats.h>
+
+#include <juce_audio_formats/juce_audio_formats.h>
 
 namespace moodycamel {
 template<typename T, size_t MAX_BLOCK_SIZE>
@@ -75,7 +75,7 @@ namespace RNBO {
 	class JuceAudioProcessor :
 		public RNBO::EventHandler,
 		public CoreObjectHolder,
-        public foleys::MagicProcessor,
+        public juce::AudioProcessor,
 		public juce::AsyncUpdater,
 		private juce::Thread
 	{

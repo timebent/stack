@@ -13,6 +13,7 @@ juce_add_gui_app(RNBOApp
   # ICON_BIG ...                      # ICON_* arguments specify a path to an image file to use as an icon
   # ICON_SMALL ...
   # DOCUMENT_EXTENSIONS ...           # Specify file extensions that should be associated with this app
+  BUNDLE_ID "com.georgiasouthern.musictech"
   COMPANY_NAME "Georgia Southern Music Tech"            # Specify the name of the app's author
   PRODUCT_NAME "WSYWIG Application")    # The name of the final executable, which can differ from the target name
 

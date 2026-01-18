@@ -47,7 +47,7 @@ void CustomAudioProcessor::initialiseBuilder(foleys::MagicGUIBuilder& builder)
 {
     // Call parent to register standard JUCE components
     RNBO::JuceAudioProcessor::initialiseBuilder(builder);
-    
+
     // Register our custom component
     builder.registerFactory("CustomKnob", &CustomComponents::CustomKnobItem::factory);
     builder.registerFactory("CustomSlider", CustomSliderContainer::factory);
