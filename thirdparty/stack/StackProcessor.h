@@ -18,6 +18,9 @@ namespace stack {
 
         static StackProcessor* CreateDefault();
         juce::AudioProcessorEditor* createEditor() override;
+        void processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages) override;
+        virtual void processPreRNBO(juce::AudioBuffer<float>&, juce::MidiBuffer&) {};
+        virtual void processPostRNBO(juce::AudioBuffer<float>&, juce::MidiBuffer&) {};
     private:
         std::unique_ptr<foleys::Magic> magic;
 

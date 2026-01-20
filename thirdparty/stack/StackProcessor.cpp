@@ -57,3 +57,10 @@ void StackProcessor::makeFactoryWidgets(foleys::MagicGUIBuilder& builder)
     };
 
 }
+
+void StackProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
+{
+    processPreRNBO (buffer, midiMessages);
+    RNBO::JuceAudioProcessor::processBlock(buffer, midiMessages);
+    processPostRNBO (buffer, midiMessages);
+}
