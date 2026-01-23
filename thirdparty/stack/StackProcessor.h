@@ -12,7 +12,7 @@
 namespace stack {
     class StackProcessor : public RNBO::JuceAudioProcessor {
     public:
-        StackProcessor::StackProcessor (const nlohmann::json& patcher_desc,
+        StackProcessor (const nlohmann::json& patcher_desc,
                                         const nlohmann::json& presets,
                                         const RNBO::BinaryData& data);
 
@@ -21,6 +21,9 @@ namespace stack {
         void processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages) override;
         virtual void processPreRNBO(juce::AudioBuffer<float>&, juce::MidiBuffer&) {};
         virtual void processPostRNBO(juce::AudioBuffer<float>&, juce::MidiBuffer&) {};
+
+        void handleParameterEvent(const RNBO::ParameterEvent& event) override {}
+
     private:
         std::unique_ptr<foleys::Magic> magic;
 
