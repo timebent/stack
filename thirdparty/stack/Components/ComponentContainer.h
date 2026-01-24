@@ -1,6 +1,6 @@
 #pragma once
 #include "foleys_gui_magic/Layout/foleys_GuiItem.h"
-#include <JuceHeader.h>
+#include <juce_gui_basics/juce_gui_basics.h>
 
 /*
  *
@@ -18,7 +18,7 @@ struct ComponentContainer : public foleys::GuiItem
                        const juce::ValueTree& node)
         : foleys::GuiItem(builder, node)
     {
-        addAndMakeVisible(containedComponent);
+
     }
 
     std::vector<juce::Component*> getComponents() { return {containedComponent}; }
@@ -55,11 +55,14 @@ struct ComponentContainer : public foleys::GuiItem
             auto paramID = getControlledParameterID({});
             if (paramID.isNotEmpty())
             {
-                attachment = getMagicState().createAttachment(paramID, *dynamic_cast<Slider*> (containedComponent));
+                attachment = getMagicState().createAttachment(paramID, *dynamic_cast<juce::Slider*> (containedComponent));
             }
         }
     }
-    void setContainedComponent(Component* c) { containedComponent = c; }
+    void setContainedComponent(Component* c) {
+        containedComponent = c;
+        addAndMakeVisible(containedComponent);
+    }
 private:
     Component* containedComponent { nullptr };
     AttachmentPtr attachment { nullptr };

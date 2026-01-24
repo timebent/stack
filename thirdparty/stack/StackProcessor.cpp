@@ -1,6 +1,7 @@
 #include "StackProcessor.h"
 #include "StackEditor.h"
 #include <json/json.hpp>
+#include "Components/CustomSlider.h"
 
 #ifdef RNBO_INCLUDE_DESCRIPTION_FILE
 #include <rnbo_description.h>
@@ -17,7 +18,7 @@ StackProcessor::StackProcessor(
   : RNBO::JuceAudioProcessor(patcher_desc, presets, data)
 {
     magic = std::make_unique<foleys::Magic> (this);
-    magic->buildFactory = [&](foleys::MagicGUIBuilder& builder) { makeFactoryWidgets(builder); };
+    makeFactoryWidgets();
 }
 
 //create an instance of our custom plugin, optionally set description, presets and binary data (datarefs)
@@ -50,10 +51,10 @@ juce::AudioProcessorEditor* StackProcessor::createEditor()
 }
 
 
-void StackProcessor::makeFactoryWidgets(foleys::MagicGUIBuilder& builder)
+void StackProcessor::makeFactoryWidgets()
 {
     magic->buildFactory = [&](foleys::MagicGUIBuilder& builder) {
-        // builder.registerFactory("CustomSlider", CustomSliderContainer::factory);
+         builder.registerFactory("CustomSlider", CustomSliderContainer::factory);
     };
 
 }
