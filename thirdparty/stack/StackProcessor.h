@@ -27,7 +27,7 @@ namespace stack {
     private:
         std::unique_ptr<foleys::Magic> magic;
 
-        void makeFactoryWidgets (foleys::MagicGUIBuilder& builder);
+        void makeFactoryWidgets ();
 
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (StackProcessor)
     };
